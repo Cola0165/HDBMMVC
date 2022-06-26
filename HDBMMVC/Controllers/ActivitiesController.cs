@@ -25,6 +25,7 @@ namespace HDBMMVC.Controllers
         {
             return View();
         }
+        [Authorize]
         public ActionResult MyIndex()
         {
             string userid = User.Identity.GetUserId().ToString();
@@ -37,6 +38,7 @@ namespace HDBMMVC.Controllers
         }
 
         // GET: Activities/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -56,6 +58,7 @@ namespace HDBMMVC.Controllers
         }
 
         // GET: Activities/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -64,6 +67,7 @@ namespace HDBMMVC.Controllers
         // POST: Activities/Create
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性；有关
         // 更多详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Name,Major,Sno,Phone,Email")] Activity activity)
@@ -79,7 +83,7 @@ namespace HDBMMVC.Controllers
 
             return View(activity);
         }
-
+        [Authorize]
         public ActionResult CreateSuccess(string CreateId)
         {
             ViewBag.createid = CreateId;
@@ -87,6 +91,7 @@ namespace HDBMMVC.Controllers
         }
 
         // GET: Activities/Edit/5
+        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -108,6 +113,7 @@ namespace HDBMMVC.Controllers
         // POST: Activities/Edit/5
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性；有关
         // 更多详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Name,Major,Sno,Phone,Email")] Activity activity)
@@ -122,6 +128,7 @@ namespace HDBMMVC.Controllers
         }
 
         // GET: Activities/Delete/5
+        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -141,6 +148,7 @@ namespace HDBMMVC.Controllers
         }
 
         // POST: Activities/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -156,6 +164,7 @@ namespace HDBMMVC.Controllers
         /// </summary>
         /// <param name="workbook"></param>
         /// <param name="sheet"></param>
+        [Authorize]
         public void CreateHeadStyle(HSSFWorkbook workbook, HSSFSheet sheet)
         {
             //创建行
@@ -194,6 +203,7 @@ namespace HDBMMVC.Controllers
         /// <summary>
         /// 导出excel表
         /// </summary>
+        [Authorize]
         public void ToExcel()
         {
             //创建一个Excel表
