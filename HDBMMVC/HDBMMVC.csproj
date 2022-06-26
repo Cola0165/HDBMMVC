@@ -222,8 +222,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\1fcbf6b46a3e455d94334ea5b59070b7.jpg" />
+    <Content Include="images\adpic_3.png" />
     <Content Include="images\Kreuzbund_friends.jpg" />
     <Content Include="images\qq.png" />
+    <Content Include="images\t01a7f2b664c23cece3.jpg" />
     <Content Include="images\wb.png" />
     <Content Include="images\wx.png" />
     <Content Include="Scripts\bootstrap.js" />

@@ -4,6 +4,13 @@
     ViewBag.Title = "个人中心";
 }
 
+<style>
+    body {
+        background-image: url('../../images/Kreuzbund_friends.jpg');
+        background-size: cover;
+    }
+</style>
+
 <div class="">
     <div class="container">
         <div class="col-md-12 column" style="text-align:center;">
@@ -14,7 +21,7 @@
 <div class="container">
     <div class="row clearfix" style="">
         <div id="main_m1" class="col-md-3 column" style="background-color: white; border-radius: 10px; ">
-            <img alt="140x140" src="~/images/touxiang.png" class="img-circle" />
+            <img alt="140x140" src="~/images/t01a7f2b664c23cece3.jpg" class="img-circle" style="width:140px;height:140px" />
             <div class="">
                 <dl class="">
                     <dt>
@@ -68,3 +75,19 @@
     </div>
 </div>
 <p class="text-success">@ViewBag.StatusMessage</p>
+@Scripts.Render("~/Scripts/jquery-3.4.1.min.js")
+<script>
+    $(function () {
+        var heightLeft = $("#main_m1").height();
+        console.info(heightLeft);
+        var heightRight = $("#main_m2").height();
+        console.info(heightRight);
+        var heightMax = Math.max(heightLeft, heightRight);
+        console.info(heightMax);
+        if (heightLeft < heightRight) {
+            $("#main_m1").height(heightRight);
+        } else {
+            $("#main_m2").height(heightLeft);
+        }
+    });
+</script>
