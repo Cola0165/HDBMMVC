@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using HDBMMVC.Models;
+using Microsoft.AspNet.Identity;
 using QXHMVC.Models;
 
 namespace HDBMMVC.Controllers
@@ -39,6 +40,8 @@ namespace HDBMMVC.Controllers
         // GET: Activities/Create
         public ActionResult Create()
         {
+            
+            //
             return View();
         }
 
@@ -47,16 +50,24 @@ namespace HDBMMVC.Controllers
         // 更多详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,Major,Sno,Phone,Email,userID")] Activity activity)
+        public ActionResult Create([Bind(Include = "Id,Name,Major,Sno,Phone,Email")] Activity activity)
         {
             if (ModelState.IsValid)
             {
+                activity.UserId = User.Identity.GetUserId().ToString();
+                activity.CreateId= Guid.NewGuid().ToString();
                 db.Activities.Add(activity);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("CreateSuccess", new { CreateId = activity.CreateId });
             }
 
             return View(activity);
+        }
+
+        public ActionResult CreateSuccess(string CreateId)
+        {
+            ViewBag.createid = CreateId;
+            return View();
         }
 
         // GET: Activities/Edit/5
@@ -79,7 +90,7 @@ namespace HDBMMVC.Controllers
         // 更多详细信息，请参阅 https://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name,Major,Sno,Phone,Email,userID")] Activity activity)
+        public ActionResult Edit([Bind(Include = "Id,Name,Major,Sno,Phone,Email")] Activity activity)
         {
             if (ModelState.IsValid)
             {

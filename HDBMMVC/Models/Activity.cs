@@ -40,6 +40,9 @@ namespace HDBMMVC.Models
         public string Email { get; set; }
 
         [DataType(DataType.Text)]
-        public string userID { get; set; }
+        public string UserId { get; set; }
+
+        [DataType(DataType.Text)]
+        public string CreateId { get; set; }
     }
 }

@@ -1,0 +1,15 @@
+﻿@model HDBMMVC.Models.Activity
+
+@{
+    ViewBag.Title = "报名成功";
+}
+
+<div class="jumbotron">
+    <h1>报名成功！</h1>
+    @*<p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>*@
+    <p>您的报名识别码为：@ViewBag.createid</p>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
