@@ -191,6 +191,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\Kreuzbund_friends.jpg" />
+    <Content Include="images\qq.png" />
+    <Content Include="images\wb.png" />
+    <Content Include="images\wx.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -245,6 +249,7 @@
     <Content Include="Views\Activities\MyIndex.cshtml" />
     <Content Include="Views\Activities\Index.cshtml" />
     <Content Include="Views\Activities\CreateSuccess.cshtml" />
+    <Content Include="Views\Activities\Admin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

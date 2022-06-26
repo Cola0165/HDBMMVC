@@ -19,6 +19,16 @@ namespace HDBMMVC.Controllers
         // GET: Activities
         public ActionResult Index()
         {
+            return View();
+        }
+        public ActionResult MyIndex()
+        {
+            string userid = User.Identity.GetUserId().ToString();
+            return View(db.Activities.Where(r => r.UserId == userid).ToList());
+        }
+        [Authorize(Roles ="Admin")]
+        public ActionResult Admin()
+        {
             return View(db.Activities.ToList());
         }
 
@@ -30,7 +40,7 @@ namespace HDBMMVC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Activity activity = db.Activities.Find(id);
-            if (activity == null)
+            if (activity == null || activity.UserId != User.Identity.GetUserId().ToString())
             {
                 return HttpNotFound();
             }
@@ -78,7 +88,7 @@ namespace HDBMMVC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Activity activity = db.Activities.Find(id);
-            if (activity == null)
+            if (activity == null || activity.UserId != User.Identity.GetUserId().ToString())
             {
                 return HttpNotFound();
             }
@@ -109,7 +119,7 @@ namespace HDBMMVC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Activity activity = db.Activities.Find(id);
-            if (activity == null)
+            if (activity == null || activity.UserId != User.Identity.GetUserId().ToString())
             {
                 return HttpNotFound();
             }

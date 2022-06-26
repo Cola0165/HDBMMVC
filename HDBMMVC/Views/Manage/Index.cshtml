@@ -1,87 +1,70 @@
 ﻿@model HDBMMVC.Models.IndexViewModel
+@using Microsoft.AspNet.Identity
 @{
-    ViewBag.Title = "管理";
+    ViewBag.Title = "个人中心";
 }
 
-<h2>@ViewBag.Title.</h2>
-
-<p class="text-success">@ViewBag.StatusMessage</p>
-<div>
-    <h4>更改你的帐户设置</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>密码:</dt>
-        <dd>
-            [
-            @if (Model.HasPassword)
-            {
-                @Html.ActionLink("更改密码", "ChangePassword")
-            }
-            else
-            {
-                @Html.ActionLink("创建", "SetPassword")
-            }
-            ]
-        </dd>
-        <dt>外部登录名:</dt>
-        <dd>
-            @Model.Logins.Count [
-            @Html.ActionLink("管理", "ManageLogins") ]
-        </dd>
-        @*
-            电话号码可以用作双因素身份验证系统中的第二个验证因素。
-             
-             要详细了解如何设置此 ASP.NET 应用程序以支持使用
-                SMS 进行双因素身份验证，请参阅<a href="https://go.microsoft.com/fwlink/?LinkId=403804">此文章</a>。
-             
-             设置双因素身份验证后，取消注释以下块
-        *@
-        @*  
-            <dt>电话号码:</dt>
-            <dd>
-                @(Model.PhoneNumber ?? "None")
-                @if (Model.PhoneNumber != null)
-                {
-                    <br />
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
-                    using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>[<input type="submit" value="删除" class="btn-link" />]</text>
-                    }
-                }
-                else
-                {
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
-                }
-            </dd>
-        *@
-        <dt>双重身份验证:</dt>
-        <dd>
-            <p>
-                未配置双因素身份验证提供程序。请参阅<a href="https://go.microsoft.com/fwlink/?LinkId=403804">此文章</a>
-                详细了解如何设置此 ASP.NET 应用程序以支持双因素身份验证。
-            </p>
-            @*@if (Model.TwoFactor)
-                {
-                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>已启用
-                        <input type="submit" value="禁用" class="btn btn-link" />
-                        </text>
-                    }
-                }
-                else
-                {
-                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>已禁用
-                        <input type="submit" value="启用" class="btn btn-link" />
-                        </text>
-                    }
-                }*@
-        </dd>
-    </dl>
+<div class="">
+    <div class="container">
+        <div class="col-md-12 column" style="text-align:center;">
+            <h1 style="color: white; margin-bottom: 50px; margin-top: 100px">@ViewBag.Title</h1>
+        </div>
+    </div>
 </div>
+<div class="container">
+    <div class="row clearfix" style="">
+        <div id="main_m1" class="col-md-3 column" style="background-color: white; border-radius: 10px; ">
+            <img alt="140x140" src="~/images/touxiang.png" class="img-circle" />
+            <div class="">
+                <dl class="">
+                    <dt>
+                        用户名：<span>@User.Identity.GetUserName()</span>
+                    </dt>
+                    <dt>
+                        密&nbsp;&nbsp;&nbsp;&nbsp;码：
+                        <span>
+                            @if (Model.HasPassword)
+                            {
+                                @Html.ActionLink("修改密码", "ChangePassword")
+                            }
+                            else
+                            {
+                                @Html.ActionLink("设置密码", "SetPassword")
+                            }
+                        </span>
+                    </dt>
+                    <br />
+                    <dt>
+                        帮助
+                    </dt>
+                    <dt>
+                        意见反馈
+                    </dt>
+                    @{
+                        if (Request.IsAuthenticated && HttpContext.Current.User.IsInRole("Admin"))
+                        {
+                            @Html.ActionLink("管理", "Admin", "Activities")
+                        }
+                    }
+                </dl>
+            </div>
+        </div>
+        <div id="main_m2" class="col-md-9 column" style="background-color: #ebebeb; text-align: center; border-radius: 10px;">
+            <div class="row" style="margin-top: 50px">
+                <div class="col-md-4" style="margin-left:10%;">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <p>
+                                @Html.ActionLink("我的报名", "MyIndex", "Activities", null, new { @class = "btn btn-warning" })
+                            </p>
+                            <p>
+                                查看我的报名信息
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<p class="text-success">@ViewBag.StatusMessage</p>

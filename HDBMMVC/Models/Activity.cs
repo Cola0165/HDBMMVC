@@ -42,6 +42,7 @@ namespace HDBMMVC.Models
         [DataType(DataType.Text)]
         public string UserId { get; set; }
 
+        [Display(Name = "报名识别码")]
         [DataType(DataType.Text)]
         public string CreateId { get; set; }
     }

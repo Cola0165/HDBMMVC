@@ -4,60 +4,90 @@
     ViewBag.Title = "登录";
 }
 
-<h2>@ViewBag.Title.</h2>
-<div class="row">
-    <div class="col-md-8">
-        <section id="loginForm">
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <h4>使用本地帐户登录。</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+<style>
+    body {
+        background-image: url('../../images/Kreuzbund_friends.jpg');
+        background-size: cover;
+    }
+
+    .content {
+        background-color: rgba(255, 255, 255, .50);
+        border-radius: 10px;
+    }
+
+    .btn {
+        height: 40px;
+        background-color: rgba(58, 102, 200, .50);
+        font-size: 16px;
+        color: white;
+    }
+</style>
+<div class="container" style="margin-top:200px;">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 content">
+            <section id="loginForm" class="col-md-offset-2">
+                <div class="col-md-6 ">
+                    <div class="form-group margin-base-vertical">
+                        <p class="col-md-offset-3">
+                            <img src="~/images/touxiang.png" alt="" class="img-circle" style="background-color:white;width:150px" />
+                        </p>
                     </div>
                 </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group form">
+
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "邮箱" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="登录" class="btn btn-default" />
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "密码" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
                     </div>
-                </div>
-                <p>
-                    @Html.ActionLink("注册为新用户", "Register")
-                </p>
-                @* 在为密码重置功能启用了帐户确认后，启用此项
+                    <div class="form-group">
+                        <div class="col-md-offset-1 col-md-10">
+                            <div class="checkbox">
+                                @Html.CheckBoxFor(m => m.RememberMe)
+                                下次自动登录
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <input type="submit" value="登录" class="btn btn-default form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10 col-md-offset-2">
+                            <div class="col-md-2">
+                                <img id="ThirdPartyQQLogin" src="~/images/qq.png" alt="30x30" style="width:30px" />
+                            </div>
+                            <div class="col-md-2">
+                                <img id="ThirdPartyTBLogin" src="~/images/wx.png" alt="30x30" style="width:30px" />
+                            </div>
+                            <div class="col-md-2">
+                                <img id="ThirdPartyWBLogin" src="~/images/wb.png" alt="30x30" style="width:30px" />
+                            </div>
+                        </div>
+                    </div>
                     <p>
-                        @Html.ActionLink("忘记了密码?", "ForgotPassword")
-                    </p>*@
-            }
-        </section>
-    </div>
-    <div class="col-md-4">
-        <section id="socialLoginForm">
-            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-        </section>
+                        @Html.ActionLink("忘记密码", "ForgotPassword")
+                    </p>
+                    <p>
+                        还没有账号？@Html.ActionLink("立即注册", "Register")
+                    </p>
+                }
+            </section>
+        </div>
     </div>
 </div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
