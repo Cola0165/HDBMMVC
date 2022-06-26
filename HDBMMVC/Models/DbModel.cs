@@ -11,7 +11,7 @@ namespace QXHMVC.Models
         public DbModel() : base("name=HDBMMVCConnection")
         {
         }
-        public System.Data.Entity.DbSet<QXHMVC.Models.Village> Villages { get; set; }
+        public System.Data.Entity.DbSet<HDBMMVC.Models.Activity> Activities { get; set; }
 
     }
 }
